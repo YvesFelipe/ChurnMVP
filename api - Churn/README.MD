@@ -19,3 +19,6 @@ Para executar a API  basta executar:
 Abra o [http://localhost:5000/#/](http://localhost:5000/#/) no navegador para verificar o status da API em execução.
 
 USAR scikit-learn 1.2.2 para evitar erro!!!
+
+
+Para a execução do teste  usar o comando pytest test_modelos.py
