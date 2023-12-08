@@ -1,0 +1,82 @@
+[2023-11-19 17:01:08,045] ERROR log_exception() L1449 Exception on /delcliente [DELETE] - call_trace=C:\Python310\lib\site-packages\flask\app.py L1449
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.InterfaceError: Error binding parameter 0 - probably unsupported type.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 1519, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python310\lib\site-packages\flask_cors\extension.py", line 165, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "C:\Python310\lib\site-packages\flask\app.py", line 1517, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 1503, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "C:\Python310\lib\site-packages\flask_openapi3\scaffold.py", line 355, in wrapper
+    resp = _do_wrapper(
+  File "C:\Python310\lib\site-packages\flask_openapi3\do_wrapper.py", line 135, in _do_wrapper
+    response = func(**request_kwargs)
+  File "C:\qaninja\tau-intro-to-pytest\tests\PÓS\api - Churn\app.py", line 207, in delete_cliente
+    Cliente.lasint == cliente_lasint).first()
+  File "C:\Python310\lib\site-packages\sqlalchemy\orm\query.py", line 2747, in first
+    return self.limit(1)._iter().first()  # type: ignore
+  File "C:\Python310\lib\site-packages\sqlalchemy\orm\query.py", line 2846, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+  File "C:\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 2246, in execute
+    return self._execute_internal(
+  File "C:\Python310\lib\site-packages\sqlalchemy\orm\session.py", line 2141, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "C:\Python310\lib\site-packages\sqlalchemy\orm\context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1412, in execute
+    return meth(
+  File "C:\Python310\lib\site-packages\sqlalchemy\sql\elements.py", line 483, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1635, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1844, in _execute_context
+    return self._exec_single_context(
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1984, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 2339, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\base.py", line 1965, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Python310\lib\site-packages\sqlalchemy\engine\default.py", line 921, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.InterfaceError: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type.
+[SQL: SELECT clientes.id AS clientes_id, clientes."Age" AS "clientes_Age", clientes."Gender" AS "clientes_Gender", clientes."Tenure" AS "clientes_Tenure", clientes."Usage Frequency" AS "clientes_Usage Frequency", clientes."Support Calls" AS "clientes_Support Calls", clientes."Payment Delay" AS "clientes_Payment Delay", clientes."Subscription Type" AS "clientes_Subscription Type", clientes."Contract Length" AS "clientes_Contract Length", clientes."Total Spend" AS "clientes_Total Spend", clientes."Last Interaction" AS "clientes_Last Interaction", clientes."Churn" AS "clientes_Churn", clientes.data_insercao AS clientes_data_insercao 
+FROM clientes 
+WHERE clientes."Age" = ? AND clientes."Gender" = ? AND clientes."Tenure" = ? AND clientes."Usage Frequency" = ? AND clientes."Support Calls" = ? AND clientes."Payment Delay" = ? AND clientes."Subscription Type" = ? AND clientes."Contract Length" = ? AND clientes."Total Spend" = ? AND clientes."Last Interaction" = ?
+ LIMIT ? OFFSET ?]
+[parameters: ((30,), (1,), (25,), (14,), (4,), (27,), (1,), (1,), (600,), 10, 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+[2023-11-19 17:01:08,072] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:01:08] "[35m[1mDELETE /delcliente?age=30&gend=1&tenu=25&usfr=14&supcl=4&payd=27&subt=1&conlen=1&totsp=600&lasint=10 HTTP/1.1[0m" 500 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:10:11,461] WARNING predict() L110  Erro ao adicionar cliente com as informações inseridas, Paciente já existente na base :/ - call_trace=C:\qaninja\tau-intro-to-pytest\tests\PÓS\api - Churn\app.py L110 
+[2023-11-19 17:10:11,465] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:10:11] "[31m[1mPOST /addcliente HTTP/1.1[0m" 409 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:36,294] INFO _log() L187  [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.0.225:5000 - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:36,301] INFO _log() L187  [33mPress CTRL+C to quit[0m - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:45,270] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:45] "[32mGET / HTTP/1.1[0m" 302 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:45,287] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:45] "GET /openapi/ HTTP/1.1" 200 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:45,451] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:45] "[36mGET /openapi/static/images/redoc.svg HTTP/1.1[0m" 304 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:45,453] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:45] "[36mGET /openapi/static/images/swagger.svg HTTP/1.1[0m" 304 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:45,462] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:45] "[36mGET /openapi/static/images/rapidoc.svg HTTP/1.1[0m" 304 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:46,639] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:46] "GET /openapi/swagger HTTP/1.1" 200 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:46,656] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:46] "[36mGET /openapi/static/css/swagger-ui.css HTTP/1.1[0m" 304 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:46,657] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:46] "[36mGET /openapi/static/js/swagger-ui-bundle.js HTTP/1.1[0m" 304 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:46,658] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:46] "[36mGET /openapi/static/js/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:46,806] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:46] "GET /openapi/openapi.json HTTP/1.1" 200 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:12:53,378] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:12:53] "GET /buscacliente?age=30&gend=1&tenu=25&usfr=14&supcl=4&payd=27&subt=1&conlen=1&totsp=600&lasint=10 HTTP/1.1" 200 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:13:02,033] WARNING get_cliente() L166  Erro ao buscar produto o cliente, Cliente não encontrado na base :/ - call_trace=C:\qaninja\tau-intro-to-pytest\tests\PÓS\api - Churn\app.py L166 
+[2023-11-19 17:13:02,035] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:13:02] "[33mGET /buscacliente?age=30&gend=1&tenu=25&usfr=14&supcl=4&payd=27&subt=1&conlen=1&totsp=601&lasint=10 HTTP/1.1[0m" 404 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
+[2023-11-19 17:13:07,198] INFO _log() L187  127.0.0.1 - - [19/Nov/2023 17:13:07] "GET /buscacliente?age=30&gend=1&tenu=25&usfr=14&supcl=4&payd=27&subt=1&conlen=1&totsp=600&lasint=10 HTTP/1.1" 200 - - call_trace=C:\Python310\lib\site-packages\werkzeug\_internal.py L187 
